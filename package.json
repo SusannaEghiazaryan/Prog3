@@ -1,0 +1,23 @@
+{
+"name": "prog3",
+"version": "1.0.0",
+"description": "",
+"main": "app.js",
+"scripts": {
+"start":"node app.js",
+"test": "echo \"Error: no test specified\" && exit 1"
+},
+"repository": {
+"type": "git",
+"url": "git+https://github.com/SusannaEghiazaryan/Prog3.git"
+},
+"author": "Susanna Eghiazaryan",
+"license": "ISC",
+
+"dependencies": {
+"express": "^4.16.2"
+},
+"engines": {
+"node": "4.7.2"
+}
+}

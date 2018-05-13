@@ -1,21 +1,21 @@
-
-class gishatich
+class gishatich  extends a
 {
 	constructor(x,y,index){
-		
+		 super(x, y, index);
 		this.x = x;
 		this.y = y;
+
 		this.multiply = 0;
 		this.energy=5;
 		this.eatten = 0;
-		
+	
 }
 newDirections(){
 		this.directions = [
 		    [this.x - 2, this.y - 2],
-		    [this.x -1 , this.y - 2],
+		    [this.x - 1, this.y - 2],
 		    [this.x		,this.y - 2],
-		    [this.x +1,  this.y - 2],
+		    [this.x + 1, this.y - 2],
 		    [this.x + 1, this.y - 2],
 
 		    [this.x - 2, this.y - 1],
@@ -41,6 +41,7 @@ newDirections(){
 		    [this.x + 1, this.y + 2]
 		];
 	}
+
 getDirections(t){
 		this.newDirections();
 		var found = [];
@@ -57,7 +58,7 @@ getDirections(t){
 		return found;
 	}
 move(){ 
-	//console.log(this.energy);
+
 	var emptyCord = this.getDirections(0);
 	var cord = random(emptyCord);
 	
@@ -77,6 +78,7 @@ move(){
 				this.energy=5;
 			}
 		}
+
   }
 
 			
@@ -85,11 +87,11 @@ eat()
 { 
 	var emptyCord = this.getDirections(2);
 	var cord = random(emptyCord);
-	// console.log(cord);
+
 		if(cord)
 		{
-			console.log("kerav" + this.eatten);
 			this.energy = 5;
+
 			this.eatten++;
 			var x = cord[0];
 			var y = cord[1];
@@ -115,7 +117,7 @@ eat()
 		{
 			this.move();
 		}
-		
+
   }
 
   mul()
@@ -147,5 +149,6 @@ eat()
 				
 			}
 		}
+
 	}
 }

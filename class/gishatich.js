@@ -1,24 +1,47 @@
-class animal{
+class gishatich  extends a
+{
 	constructor(x,y,index){
-		
+		 super(x, y, index);
 		this.x = x;
 		this.y = y;
+
 		this.multiply = 0;
 		this.energy=5;
-		
+		this.eatten = 0;
+	
 }
 newDirections(){
 		this.directions = [
+		    [this.x - 2, this.y - 2],
+		    [this.x - 1, this.y - 2],
+		    [this.x		,this.y - 2],
+		    [this.x + 1, this.y - 2],
+		    [this.x + 1, this.y - 2],
+
+		    [this.x - 2, this.y - 1],
 		    [this.x - 1, this.y - 1],
 		    [this.x    , this.y - 1],
-		    [this.x + 1, this.y - 1],
-		    [this.x - 1, this.y    ],
-		    [this.x + 1, this.y    ],
-		    [this.x - 1, this.y + 1],
-		    [this.x    , this.y + 1],
-		    [this.x + 1, this.y + 1]
+			[this.x + 1, this.y - 1],
+		    [this.x    , this.y - 2],
+
+		    [this.x + 2, this.y - 2],
+		    [this.x - 2, this.y    ],
+		    [this.x + 2, this.y    ],
+		    [this.x - 2, this.y + 2],
+		    [this.x    , this.y + 2],
+		    [this.x + 2, this.y + 2],
+			
+			[this.x - 1, this.y - 2],
+		    [this.x    , this.y - 2],
+		    [this.x + 1, this.y - 2],
+		    [this.x - 2, this.y    ],
+		    [this.x + 2, this.y    ],
+		    [this.x - 1, this.y + 2],
+		    [this.x    , this.y + 2],
+		    [this.x + 1, this.y + 2]
 		];
 	}
+
 getDirections(t){
 		this.newDirections();
 		var found = [];
@@ -35,62 +58,66 @@ getDirections(t){
 		return found;
 	}
 move(){ 
-	//console.log(this.energy);
+
 	var emptyCord = this.getDirections(0);
 	var cord = random(emptyCord);
-	//console.log(cord);
+	
 		if(cord){
-			--this.energy;
-			this.eatten = 0;
 			var x = cord[0];
 			var y = cord[1];
 
 			matrix[this.y][this.x] = 0;
-			matrix[y][x] = 2;
+			matrix[y][x] = 3;
 
 			this.x = x;
 			this.y = y;
+			this.energy--;
 			if(this.energy==0){
-				//console.log(x,y);
-				//console.log("oxormi");
+			
 				this.die(x,y);
+				this.energy=5;
 			}
 		}
+
   }
 
 			
 
-eat(){ 
-	var emptyCord = this.getDirections(1);
+eat()
+{ 
+	var emptyCord = this.getDirections(2);
 	var cord = random(emptyCord);
-	//console.log(cord);
-		if(cord){
+
+		if(cord)
+		{
 			this.energy = 5;
+
 			this.eatten++;
 			var x = cord[0];
 			var y = cord[1];
 			matrix[this.y][this.x] = 0;
-			matrix[y][x] = 2;
+			matrix[y][x] = 3;
 			this.x = x;
 			this.y = y; 
-			for (var i in xotArr)
+			for (var i in kendaniArr)
 			{
-				if(xotArr[i].x==x && xotArr[i].y==y)
+				if(kendaniArr[i].x==x && kendaniArr[i].y==y)
 				{
-					xotArr.splice(i, 1);
+					kendaniArr.splice(i, 1);
 				}
 			}
-			if(this.eatten == 5){
+			if(this.eatten == 2){
 				this.mul();
 				this.eatten = 0;
-
+                
 			}
 
 		}
-		else {
+		else 
+		{
 			this.move();
 		}
-		
+
   }
 
   mul()
@@ -105,22 +132,23 @@ eat(){
 			var x = cord[0];
 			var y = cord[1];
 
-			var kendanik = new animal(x,y,this.index);
-			kendaniArr.push(kendanik);
+			var poghos = new gishatich(x,y,this.index);
+			gishatichArr.push(poghos);
 
 			matrix[y][x] = 1;
 		}
 
 	}
 	die(x,y)
-	{
-		for (var i in kendaniArr)
+	{matrix[y][x] = 0;
+		for (var i in gishatichArr)
 		{//console.log(x,y);
-			if(kendaniArr[i].x==x && kendaniArr[i].y==y)
+			if(gishatichArr[i].x==x && gishatichArr[i].y==y)
 			{
-				kendaniArr.splice(i, 1);
-				matrix[y][x] = 0;
+				gishatichArr.splice(i, 1);
+				
 			}
 		}
+
 	}
 }
