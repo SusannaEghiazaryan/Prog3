@@ -6,6 +6,7 @@ class  a {
 		this.energy = 5;
 		this.multiply = 0;
 		
+		
 	}
 
 	newDirections(){
