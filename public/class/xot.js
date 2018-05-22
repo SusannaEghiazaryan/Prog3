@@ -8,7 +8,7 @@ class Grass  extends a{
 
 	mul(){
 		this.multiply++;
-		if(this.multiply == 3){
+		if(this.multiply >= 3){
 			var emptyCord = this.getDirections(0);
 
 			var cord = random(emptyCord);

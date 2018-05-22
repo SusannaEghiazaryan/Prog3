@@ -1,7 +1,7 @@
 class animal extends a {
 
-	constructor(x,y,index) {
-		super(x,y,index);
+	constructor(x, y, index) {
+		super(x, y, index);
 		this.eatten = 0;
 	}
 
@@ -21,10 +21,10 @@ class animal extends a {
 
 			this.x = x;
 			this.y = y;
-			if (this.energy == 0) {
-				
+			if (this.energy <= 0) {
+
 				this.die(x, y);
-				
+
 			}
 		}
 
@@ -36,28 +36,30 @@ class animal extends a {
 		var emptyCord = this.getDirections(1);
 		var cord = random(emptyCord);
 		if (cord) {
-			
-			this.energy = 5;
+
 			this.eatten++;
 			var x = cord[0];
 			var y = cord[1];
 			matrix[this.y][this.x] = 0;
 			matrix[y][x] = 2;
-			this.x = x;
-			this.y = y;
+			console.log(cord);
 			for (var i in xotArr) {
 				if (xotArr[i].x == x && xotArr[i].y == y) {
+					console.log(xotArr[i], xotArr.length);
+
 					xotArr.splice(i, 1);
+					console.log(xotArr.length);
+					break;
 				}
 			}
-			
+
+			this.x = x;
+			this.y = y;
+
 			if (this.eatten >= 5) {
-				
 				this.mul();
 				this.eatten = 0;
-
 			}
-
 		}
 		else {
 			this.move();
@@ -78,10 +80,10 @@ class animal extends a {
 			var kendanik = new animal(x, y, this.index);
 			kendaniArr.push(kendanik);
 
-			matrix[y][x] = 1;
+			matrix[y][x] = 2;
 		}
 
-		
+
 
 	}
 	die(x, y) {
@@ -89,9 +91,10 @@ class animal extends a {
 			if (kendaniArr[i].x == x && kendaniArr[i].y == y) {
 				kendaniArr.splice(i, 1);
 				matrix[y][x] = 0;
+				break;
 			}
 		}
-	
+
 	}
 
 }

@@ -129,15 +129,16 @@ class gishatich extends a {
 
 			matrix[y][x] = 1;
 		}
-
+//console.log("mul");
 	}
 	die() {
-		console.log("merav");
+		//console.log("merav");
 		for (var i in gishatichArr) {
 			if (gishatichArr[i].x == this.x && gishatichArr[i].y == this.y) {
+				
 				gishatichArr.splice(i, 1);
 				matrix[this.y][this.x] = 0;
-				break;
+			break;
 			}
 		}
 	}
