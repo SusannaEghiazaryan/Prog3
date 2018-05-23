@@ -3,15 +3,25 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
+app.use(express.static("public"));
+app.get('/', function (req, res) {
+    res.redirect('public/index.html');
+});
+server.listen(3000);
+
+var a = require("./class/class.js");
+var Grass = require("./class/xot.js");
+var gishatich = require("./class/gishatich.js");
+var animal = require("./class/xotaker.js");
 
 matrix = [];
 kendaniArr = [];
 gishatichArr = [];
 xotArr = [];
-xotqanaktokos = 50;
-kendaniqanaktokosov = 45;
-gishatichqanaktokosov = 5;
-
+var xotqanaktokos = 50;
+var kendaniqanaktokosov = 45;
+var gishatichqanaktokosov = 5;
+ n = 50;
 
 
 for (var i = 0; i < n; i++) {
@@ -57,7 +67,7 @@ while (gishatichqanak > 0) {
 }
 
 
-background('#acacac');
+//background('#acacac');
 for (var y = 0; y < matrix.length; y++) {
     for (var x = 0; x < matrix[0].length; x++) {
         if (matrix[y][x] == 1) {
@@ -76,17 +86,22 @@ for (var y = 0; y < matrix.length; y++) {
 }
 
 
-setInterval()
-{
-    for (var i in xotArr) {
-        xotArr[i].mul();
+
+io.on('connection', function () {
+    function funkcia() {
+        for (var i in xotArr) {
+            xotArr[i].mul();
+        }
+        for (var i in kendaniArr) {
+            kendaniArr[i].eat();
+        }
+        for (var i in gishatichArr) {
+            gishatichArr[i].eat();
+        }
+        io.sockets.emit("send matrix", matrix);
+
     }
-    for (var i in kendaniArr) {
-        kendaniArr[i].eat();
-    }
-    for (var i in gishatichArr) {
-        gishatichArr[i].eat();
-    }
-}
 
 
+    setInterval(funkcia, 500);
+});

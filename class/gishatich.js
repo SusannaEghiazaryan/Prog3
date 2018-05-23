@@ -1,8 +1,6 @@
+var a = require("./class.js");
 
-
-
-
-class gishatich extends a {
+module.exports = class gishatich extends a {
 	constructor(x, y, index) {
 		super(x, y, index);
 		this.x = x;
@@ -63,7 +61,9 @@ class gishatich extends a {
 	move() {
 
 		var emptyCord = this.getDirections(0);
-		var cord = random(emptyCord);
+		var randomVandak = Math.floor(Math.random() * emptyCord.length);
+		var cord = emptyCord[randomVandak];
+		
 
 		if (cord) {
 			var x = cord[0];
@@ -74,12 +74,12 @@ class gishatich extends a {
 
 			this.x = x;
 			this.y = y;
-			this.energy--;
-			if (this.energy == 0) {
 
-				this.die(x, y);
-				this.energy = 5;
-			}
+		}
+		this.energy--;
+		if (this.energy <= 0) {
+
+			this.die();
 		}
 
 	}
@@ -88,11 +88,11 @@ class gishatich extends a {
 
 	eat() {
 		var emptyCord = this.getDirections(2);
-		var cord = random(emptyCord);
+		var randomVandak = Math.floor(Math.random() * emptyCord.length);
+		var cord = emptyCord[randomVandak];
 
 		if (cord) {
 			this.energy = 5;
-
 			this.eatten++;
 			var x = cord[0];
 			var y = cord[1];
@@ -118,12 +118,13 @@ class gishatich extends a {
 
 	}
 
+
 	mul() {
 		this.multiply++;
 
 		var emptyCord = this.getDirections(0);
-
-		var cord = random(emptyCord);
+		var randomVandak = Math.floor(Math.random() * emptyCord.length);
+		var cord = emptyCord[randomVandak];
 		if (cord) {
 			var x = cord[0];
 			var y = cord[1];
@@ -133,16 +134,17 @@ class gishatich extends a {
 
 			matrix[y][x] = 1;
 		}
-
+		
 	}
-	die(x, y) {
-	matrix[y][x] = 0;
-		for (var i in gishatichArr) {//console.log(x,y);
-			if (gishatichArr[i].x == x && gishatichArr[i].y == y) {
-				gishatichArr.splice(i, 1);
+	die() {
+	
+		for (var i in gishatichArr) {
+			if (gishatichArr[i].x == this.x && gishatichArr[i].y == this.y) {
 
+				gishatichArr.splice(i, 1);
+				matrix[this.y][this.x] = 0;
+				break;
 			}
 		}
-
 	}
 }

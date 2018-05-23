@@ -1,12 +1,19 @@
-class animal extends a{
+var a = require("./class.js");
+
+module.exports = class animal extends a {
+
+	constructor(x, y, index) {
+		super(x, y, index);
+		this.eatten = 0;
+	}
 
 
 
-
-move(){ 
-	var emptyCord = this.getDirections(0);
-	var cord = random(emptyCord);
-		if(cord){
+	move() {
+		var emptyCord = this.getDirections(0);
+		var randomVandak = Math.floor(Math.random() * emptyCord.length);
+		var cord = emptyCord[randomVandak];
+		if (cord) {
 			--this.energy;
 			this.eatten = 0;
 			var x = cord[0];
@@ -17,79 +24,77 @@ move(){
 
 			this.x = x;
 			this.y = y;
-			if(this.energy==0){
-				this.die(x,y);
+			if (this.energy <= 0) {
+
+				this.die(x, y);
+
 			}
 		}
 
-  }
+	}
 
-			
 
-eat(){ 
-	var emptyCord = this.getDirections(1);
-	var cord = random(emptyCord);
-		if(cord){
-			this.energy = 5;
+
+	eat() {
+		var emptyCord = this.getDirections(1);
+		var randomVandak = Math.floor(Math.random() * emptyCord.length);
+		var cord = emptyCord[randomVandak];
+		if (cord) {
+
 			this.eatten++;
 			var x = cord[0];
 			var y = cord[1];
 			matrix[this.y][this.x] = 0;
 			matrix[y][x] = 2;
-			this.x = x;
-			this.y = y; 
-			for (var i in xotArr)
-			{
-				if(xotArr[i].x==x && xotArr[i].y==y)
-				{
+	
+			for (var i in xotArr) {
+				if (xotArr[i].x == x && xotArr[i].y == y) {
 					xotArr.splice(i, 1);
+					break;
 				}
 			}
-			if(this.eatten == 5){
+
+			this.x = x;
+			this.y = y;
+
+			if (this.eatten >= 5) {
 				this.mul();
 				this.eatten = 0;
-
 			}
-
 		}
 		else {
 			this.move();
 		}
 
-  }
+	}
 
-  mul()
-  {
+	mul() {
 		this.multiply++;
-		
 		var emptyCord = this.getDirections(0);
-
-		var cord = random(emptyCord);
-		if(cord)
-		{
+		var randomVandak = Math.floor(Math.random() * emptyCord.length);
+		var cord = emptyCord[randomVandak];
+		if (cord) {
 			var x = cord[0];
 			var y = cord[1];
 
-			var kendanik = new animal(x,y,this.index);
+			var kendanik = new animal(x, y, this.index);
 			kendaniArr.push(kendanik);
 
-			matrix[y][x] = 1;
+			matrix[y][x] = 2;
 		}
 
 
 
 	}
-	die(x,y)
-	{
-		for (var i in kendaniArr)
-		{
-			if(kendaniArr[i].x==x && kendaniArr[i].y==y)
-			{
+	die(x, y) {
+		for (var i in kendaniArr) {
+			if (kendaniArr[i].x == x && kendaniArr[i].y == y) {
 				kendaniArr.splice(i, 1);
 				matrix[y][x] = 0;
+				break;
 			}
 		}
 
 	}
-	
+
 }
