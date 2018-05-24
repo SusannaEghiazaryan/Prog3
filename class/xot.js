@@ -9,6 +9,7 @@ module.exports = class Grass extends a {
 			var emptyCord = this.getDirections(0);
 			var randomVandak = Math.floor(Math.random() * emptyCord.length);
 			var cord = emptyCord[randomVandak];
+			
 			if (cord) {
 				var x = cord[0];
 				var y = cord[1];
@@ -19,13 +20,8 @@ module.exports = class Grass extends a {
 				matrix[y][x] = 1;
 				this.multiply = 0;
 			}
-
 		}
-		
-	
-	
 	}
-
 }
 
 

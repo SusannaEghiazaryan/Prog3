@@ -25,9 +25,7 @@ module.exports = class animal extends a {
 			this.x = x;
 			this.y = y;
 			if (this.energy <= 0) {
-
 				this.die(x, y);
-
 			}
 		}
 
@@ -46,7 +44,7 @@ module.exports = class animal extends a {
 			var y = cord[1];
 			matrix[this.y][this.x] = 0;
 			matrix[y][x] = 2;
-	
+
 			for (var i in xotArr) {
 				if (xotArr[i].x == x && xotArr[i].y == y) {
 					xotArr.splice(i, 1);
@@ -82,8 +80,6 @@ module.exports = class animal extends a {
 
 			matrix[y][x] = 2;
 		}
-
-
 
 	}
 	die(x, y) {

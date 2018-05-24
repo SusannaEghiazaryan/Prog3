@@ -19,9 +19,9 @@ kendaniArr = [];
 gishatichArr = [];
 xotArr = [];
 var xotqanaktokos = 50;
-var kendaniqanaktokosov = 45;
-var gishatichqanaktokosov = 5;
- n = 50;
+var kendaniqanaktokosov = 10;
+var gishatichqanaktokosov = 3;
+n = 50;
 
 
 for (var i = 0; i < n; i++) {
@@ -67,7 +67,6 @@ while (gishatichqanak > 0) {
 }
 
 
-//background('#acacac');
 for (var y = 0; y < matrix.length; y++) {
     for (var x = 0; x < matrix[0].length; x++) {
         if (matrix[y][x] == 1) {
@@ -87,11 +86,36 @@ for (var y = 0; y < matrix.length; y++) {
 
 
 
+exanakNum = 0;
+weather = 'spring';
+
 io.on('connection', function () {
     function funkcia() {
-        for (var i in xotArr) {
-            xotArr[i].mul();
+
+        exanakNum++;
+
+        if (exanakNum % 40 == 0) {
+            weather = 'spring';
         }
+        else if (exanakNum % 40 == 10) {
+            weather = 'summer';
+
+        }
+        else if (exanakNum % 40 == 20) {
+            weather = 'autumn';
+
+        }
+        else if (exanakNum % 40 == 30) {
+            weather = 'winter';
+
+        }
+        console.log(weather);
+        if (weather != 'winter') {
+            for (var i in xotArr) {
+                xotArr[i].mul();
+            }
+        }
+        
         for (var i in kendaniArr) {
             kendaniArr[i].eat();
         }
@@ -99,9 +123,6 @@ io.on('connection', function () {
             gishatichArr[i].eat();
         }
         io.sockets.emit("send matrix", matrix);
-
     }
-
-
-    setInterval(funkcia, 500);
+    setInterval(funkcia, 1500);
 });

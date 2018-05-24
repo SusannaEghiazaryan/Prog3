@@ -63,8 +63,6 @@ module.exports = class gishatich extends a {
 		var emptyCord = this.getDirections(0);
 		var randomVandak = Math.floor(Math.random() * emptyCord.length);
 		var cord = emptyCord[randomVandak];
-		
-
 		if (cord) {
 			var x = cord[0];
 			var y = cord[1];
@@ -76,7 +74,10 @@ module.exports = class gishatich extends a {
 			this.y = y;
 
 		}
-		this.energy--;
+		if (weather !="winter")
+		{
+			this.energy--;
+		}
 		if (this.energy <= 0) {
 
 			this.die();
@@ -105,14 +106,14 @@ module.exports = class gishatich extends a {
 					kendaniArr.splice(i, 1);
 				}
 			}
-			if (this.eatten == 2) {
+			if (this.eatten == 6) {/* kareli e darcnel 5 kam 4*/ 
 				this.mul();
 				this.eatten = 0;
 
 			}
 
 		}
-		else {
+		else if (weather!="winter"){
 			this.move();
 		}
 
