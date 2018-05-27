@@ -1,6 +1,6 @@
 var side = 15;
 var n = 50;
-var col = '##e6e6e6';
+var col = '#e6e6e6';
 ashun = false;
 dzmer = false;
 function setup() {
@@ -13,16 +13,22 @@ function setup() {
     if (weather == 'winter') {
       dzmer = true;
       col = "#e6e6e6"
+      ashun = false;
     }
     else if (weather == 'spring') {
       col = "#99ff99"
+      dzmer = false;
+      ashun = false;
     }
     else if (weather == 'summer') {
       col = "#ffff99"
+      dzmer = false;
+      ashun = false;
     }
     else if (weather == 'autumn') {
       col = "#ffcc66"
       ashun = true;
+      dzmer = false;
     }
   });
 
