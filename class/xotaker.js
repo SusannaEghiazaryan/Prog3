@@ -55,7 +55,15 @@ module.exports = class animal extends a {
 			this.x = x;
 			this.y = y;
 
-			if (this.eatten >= 5) {
+			if (this.eatten >= 5 && weather == 'winter') {
+				this.mul();
+				this.eatten = 0;
+			}
+			else if (this.eatten >= 1 && (weather == 'spring' || weather == 'autumn')) {
+				this.mul();
+				this.eatten = 0;
+			}
+			else if (this.eatten >= 3 && weather == "summer") {
 				this.mul();
 				this.eatten = 0;
 			}
@@ -63,7 +71,7 @@ module.exports = class animal extends a {
 		else {
 			this.move();
 		}
-
+		KendKeravXot++;
 	}
 
 	mul() {
@@ -80,7 +88,7 @@ module.exports = class animal extends a {
 
 			matrix[y][x] = 2;
 		}
-
+		KendBazm++;
 	}
 	die(x, y) {
 		for (var i in kendaniArr) {
@@ -90,7 +98,7 @@ module.exports = class animal extends a {
 				break;
 			}
 		}
-
+		KendMerav++;
 	}
 
 }

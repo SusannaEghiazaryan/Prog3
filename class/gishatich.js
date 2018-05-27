@@ -74,11 +74,10 @@ module.exports = class gishatich extends a {
 			this.y = y;
 
 		}
-		if (weather !="winter")
-		{
+		if (weather != "winter") {
 			this.energy--;
 		}
-		if (this.energy <= 0) {
+		if (this.energy <= 0 && weather != "winter") {
 
 			this.die();
 		}
@@ -106,17 +105,22 @@ module.exports = class gishatich extends a {
 					kendaniArr.splice(i, 1);
 				}
 			}
-			if (this.eatten == 6) {/* kareli e darcnel 5 kam 4*/ 
+
+			if (this.eatten == 4 && weather == "spring") {
+				this.mul();
+				this.eatten = 0;
+			}
+			else if (this.eatten == 6 && weather != "spring") {
 				this.mul();
 				this.eatten = 0;
 
 			}
 
 		}
-		else if (weather!="winter"){
+		else if (weather != "winter") {
 			this.move();
 		}
-
+		GishKeravKend++;
 	}
 
 
@@ -135,10 +139,10 @@ module.exports = class gishatich extends a {
 
 			matrix[y][x] = 1;
 		}
-		
+		GishBazm++;
 	}
 	die() {
-	
+
 		for (var i in gishatichArr) {
 			if (gishatichArr[i].x == this.x && gishatichArr[i].y == this.y) {
 
@@ -147,5 +151,6 @@ module.exports = class gishatich extends a {
 				break;
 			}
 		}
+
 	}
 }
